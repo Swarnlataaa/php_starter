@@ -1,0 +1,81 @@
+
+
+
+<!--//program to get username and phone number
+//Validate it for conditions=>
+//username should start with character and should have 8 chars at lenght 
+//phone number is a 10 digits in length 
+//after posted to the server-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Webpage to get and display profile </title>
+</head>
+<body>
+    <form action="profile.php" method="post" onsubmit="return validate();">
+        <label for="username">Enter your name </label>
+        <input type="text" required name="username" id ="username">
+        <label for="output" id="message">        </label><br>
+        <label for="phone">Enter phone number </label>
+        <input type="text" required name="phone" id="phone">
+        <label for="output1" id="msg1"></label>
+        <br>
+        <input type="submit" value="Submit" name="submit">
+
+        <script>
+            function validate()
+            {
+                const username=document.getElementById("username").value;
+                const phone=document.getElementById("phone").value;
+
+                const pattern =/^[a-zA-Z] [a-zA-ZO-9] {7}$/
+                if(!username.match(pattern))
+                {
+                    document.getElementById("msg").innerHTML="invalid username";
+                    return false;
+                }
+
+                const pattern1=/[0-9]{10}$/
+                if(!phone.match(pattern1)){
+                    document.getElementById("msg1").innerHTML="Invalid Phone Number";
+                    return false;
+                }
+                return true;
+            }
+        </script>
+
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    </form>
+
+    <?php 
+    if (isset($_POST('submit')))
+    {
+        $username=$POST("username");
+        $phone=$_POST("phone");
+        echo "Your name is " .$username ."and phone number is" .$phone;
+    }
+    
+    
+    
+    
+    
+    ?>
+    
+</body>
+</html>
+

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="test.php" method="post" enctype="multipart/form-data">
+    <label for="regnumber">Enter your registration number</label>
+    <input type="text" required name="regnumber" id="regnumber"><br>
+    <label for="Name"> Enter your name </label>
+    <input type="text" required name="username" id="username"><br>
+    <label for="comments">Enter your Comment</label><br>
+    <textarea namne="comments" id="comments" cols="30" rows="10"></textarea><br>
+    <input type="submit" name="submit" value="submit">
+</form>
+<?php  
+if(isset($_POST['submit']))
+{
+    $regnumber = $_POST['regnumber'];
+    $username = $_POST['username'];
+    $comments = $_POST['comments'];
+
+    $myfile=fopen("swarna.txt","a") or die ("cant open the file");
+    $txt=$regnumber.$username.$comments;
+    fwrite($myfile,$txt);
+    fclose($myfile);
+}
+
+
+
+?>
+</body>
+</html>

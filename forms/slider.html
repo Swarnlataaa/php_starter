@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <form action="profile.php" method="post" onsubmit="return validate();">
+        <label for="reccomendation">Select your reccomendation</label><br>
+       
+        <input type="range" min="1" max="12" step="1" value="1"  name="communication" id="communication" >
+        <br>
+        <input type="range" value="Submit" name="submit">
+        <label for="msg" id="msg"></label>
+        <script>
+            function validate() {
+                let skill_level = document.getElementById("communication").value;
+                return true;
+            }
+        </script>
+    </form>
+    <?php 
+    if(isset($_POST['submit'])){
+        if(isset($_POST['communication'])){
+            $result=$POST['communication'];
+            echo "The skill level is  " .$result;
+        }
+    }
+    
+    ?>
+
+</body>
+
+</html>

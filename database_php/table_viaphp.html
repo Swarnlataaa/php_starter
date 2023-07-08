@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <style>
+     table th{
+        background-color:aqua;
+     }
+     tr:nth-child(2n+1)
+     {
+        background-color: bisque;
+     }
+     
+
+    </style>
+</body>
+</html>
+<?php
+function OpenCon()
+{
+    $dbhost = "localhost";
+    $dbuser = "root";
+    $dbpass = "1234";
+    $db = "swarna";
+    $conn = new mysqli($dbhost, $dbuser, "", $db) or die(" connect failed: %s\n" . $conn->error);
+    return $conn;
+}
+function CloseCon($conn)
+{
+    $conn->close();
+}
+
+$conn->OpenCon();
+$sql="SELECT * FROM employee";
+$result=$conn->query($sql);
+
+if ($result->num_rows > 0){
+    echo"<table border='1'>
+        <tr>
+            <th>Employee Id</th>
+            <th>Name</th>
+            <th>Phone</th>
+            <th>Salary</th>
+
+
+        </tr>";
+
+        while($row=$result->fetch_assoc())
+        {
+            echo"<tr>"
+                echo"<td>" .$row['eid'] . "</td>";
+                echo"<td>" .$row['eid'] . "</td>";
+                echo"<td>" .$row['eid'] . "</td>";
+                echo"<td>" .$row['eid'] . "</td>";
+                
+                echo "</tr>";
+        }
+        echo"</table>"
+}else
+{
+    echo "0 results";
+}
+CloseCon($conn);
+?>

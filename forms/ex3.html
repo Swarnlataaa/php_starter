@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="profile.php" method="post" onsubmit="return validate();">
+        <label for="username"></label>
+        <input type="username" required name="username" id="username"><br>
+        <label for="output" id="msg"></label><br>
+        <label for="password" ></label>
+        <input type="password"  required name="password" id="password">
+        <label for="output1" id="msg1"></label> <br>
+        <input type="submit" value="Submit" name="submit">
+        <script>
+         
+
+         function validate() {
+                const username = document.getElementById("username").value;
+                const password = document.getElementById("password").value;
+
+                const pattern = /^[a-zA-Z] [a-zA-ZO-9] {7}$/
+                if (!username.match(pattern)) {
+                    document.getElementById("msg").innerHTML = "invalid username";
+                    return false;
+                }
+
+                const pattern1 = /[0-9]{10}$/
+                if (!phone.match(pattern1)) {
+                    document.getElementById("msg1").innerHTML = "Invalid Phone Number";
+                    return false;
+                }
+                return true;
+            }
+
+        </script>
+    </form>
+    <?php
+    if(isset($_POST['submit']))
+    {
+        $username=$_POST["username"];
+        $password=$_POST["password"];
+         if(strcmp($username,"Swarnlata13")==0 && strcmp($password,"Swarnlata#13")==0)
+         {
+           header("location:home.php");
+         }else{
+            echo"Invalid login Credentials. Try Again";
+         }
+    }
+    
+    
+    ?>
+</body>
+</html>

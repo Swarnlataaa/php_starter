@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload using php</title>
+</head>
+<body>
+    <form action="test.php" method="post" enctype="multipart/form-data">
+    <label for="fileupload">Select your file </label>
+    <input type="file" name="inputfile" id="inputfile">
+    <input type="submit" name="submit" value="Upload">
+    <label for="msg" id="msg"></label>
+    </form>
+    <?php  
+    if(isset($_POST['submit'])){
+        echo $_FILES['inputfile']['name']."<br>";
+        echo $_FILES['inputfile']['type']."<br>";
+        echo $_FILES['inputfile']['size']."<br>";
+        echo $_FILES['inputfile']['tmp_name'];
+    }
+    
+    
+    ?>
+    
+</body>
+</html>

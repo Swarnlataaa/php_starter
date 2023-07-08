@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkbox using php</title>
+</head>
+<body>
+    <form action="profile.php" method="post" onsubmit="return validate();">
+    <label for="subjects"> Select your subjects </label><br>
+    <input type="checkbox" class="checkbox" name="sub[]" value="chemistry">Chemistry</br>
+    <input type="checkbox" class="checkbox" name="sub[]" value="physics">Physics</br>
+    <input type="checkbox" class="checkbox" name="sub[]" value="English">English</br>
+    <br>
+    <input type="submit" value="Submit" name="submit">
+    <label for="msg" id="msg"></label>
+    <script>
+    function validate(){
+        let subjects=document.getElementsByClassName("checkbox");
+        let found=false;
+        for(let i of gender){
+            if(i.checked){
+                found=true;
+                return true;
+            }
+        }
+            if(!found){
+                document.getElementById("msg").innerHTML="select your Subjects";
+                return true;
+            }
+        }
+    </script>
+    </form>
+    <?php
+    if(isset($_POST['submit']))
+    {
+        if(isset($_POST['sub']))
+        {
+            $result=$_POST['sub'];
+            foreach($result as $value ){
+                echo $value;
+            }
+        }
+    }
+    
+    <!--risk framework and liablity franchise-->
+    
+    
+    
+    
+    ?>
+</body>
+</html>

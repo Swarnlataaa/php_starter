@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="test.php" method="post" enctype="multipart/form-data">
+    <label for="regnumber">click on </label>
+    <input type="submit" name="submit" value="View contents">
+
+
+    </form>
+    <?php
+    if(isset($_POST['submit'])){
+        $myfile =fopen("satya.txt","r") or die("can't open the file");
+        $txt=fread($myfile,filesize("satya.txt"));
+        echo $txt;
+        fclose($myfile);
+    }
+    
+    ?>
+</body>
+</html>

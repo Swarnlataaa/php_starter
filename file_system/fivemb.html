@@ -1,0 +1,62 @@
+<!---check if file is 4mb and the upload it to the server-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="test.php" method="post" enctype="multipart/form-data">
+        <label for="fileupload">Select your file </label>
+        <input type="file" name="inputfile" id="inputfile">
+        <input type="submit" name="submit" value="Upload">
+        <label for="msg" id="msg"></label>
+    </form>
+    <?php 
+    if(isset($_POST['submit'])){
+        //echo $_FILES['inputfile']['name']."<br>";
+        /*echo $_FILES['inputfile']['type']."<br>";
+        echo $_FILES['inputfile']['size']."<br>";
+        echo $_FILES['inputfile']['tmp_name']; */
+        //basename($$_FILES["inputfile"]["name"]);
+        /*target_dir="uploaded_Files/";
+        /*target_file= $target_dir.basename($_FILES["inputfile"]["name"]);
+        $extentiontype=strtolower(pathinfo($target_file,PATHINFO_EXTENTSION));
+        echo $extentiontype;*/
+
+        target_dir="uploaded_files/"; //upload folder
+        target_file=$target_dir.basename($_FILES["inputfile"]["name"]); //file pathinfo
+        //echo $target_file."<br>";
+        $extentiontype=strtolower(pathinfo($target_file,PATHINFO_EXTENSION)); 
+
+        $extentions=array("docx","doc","pdf");
+        $error=0;
+
+        if(!in_array($extentiontype,$extentions))
+        {
+            echo "only word and pdf files are allowed";
+            $error=1;
+        }
+        if(file_exists($target_file))
+        {
+            echo "File alraedy exists.Can't upload";
+            $error=1;
+        }
+        if($_FILES['inputfile']['size']>5000000){
+            echo "File Size greater than 5mb. Upload a file less than 5mb";
+            $error=1;
+        }
+        if($error==0)
+        {
+            move_uploaded_file($_FILES['inputfile']['tmp_name'],$target_file);
+            echo $_FILES['inputfile']['name']. "has been uploaded to the server sucessfully";
+        }
+
+    }
+    
+    
+    ?>
+    
+</body>
+</html>
